@@ -34,6 +34,7 @@ echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.profile
 source ~/.profile
 mkvirtualenv cv -p python2
 pip install numpy
+pip install pillow
 
 # INSTALL THE LIBRARY (YOU CAN CHANGE '3.1.0' FOR THE LAST STABLE VERSION)
 
@@ -61,4 +62,4 @@ sudo ldconfig
 
 # Symlink OpenCV packages
 cd ~/.virtualenvs/cv/lib/python2.7/site-packages/
-ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so
+ln -s /usr/local/lib/python2.7/dist-packages/cv2.so cv2.so
