@@ -1,5 +1,7 @@
 sudo apt-get -y update
 sudo apt-get -y upgrade
+sudo apt-get -y dist-upgrade
+sudo apt-get -y autoremove
 
 # INSTALL THE DEPENDENCIES
 
@@ -35,19 +37,23 @@ source ~/.profile
 mkvirtualenv cv -p python2
 pip install numpy
 pip install pillow
+pip install imutils
 
 # INSTALL THE LIBRARY (YOU CAN CHANGE '3.1.0' FOR THE LAST STABLE VERSION)
-
-sudo apt-get install -y unzip wget
 cd ~
+sudo apt-get install -y unzip wget
 wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip
-rm -rf opencv
+rm -rf opencv-3.1.0
 unzip opencv.zip
 rm opencv.zip
 wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip
-rm -rf opencv_contrib
+rm -rf opencv_contrib-3.1.0
 unzip opencv_contrib.zip
 rm opencv_contrib.zip
+cd ~/opencv-3.1.0/modules/python/
+echo -e "\n# virtualenv and virtualenvwrapper" >> common.cmake
+echo "find_package(HDF5)" >> common.cmake
+echo "include_directories(${HDF5_INCLUDE_DIRS})" >> common.cmake
 cd ~/opencv-3.1.0/
 mkdir build
 cd build
@@ -62,4 +68,4 @@ sudo ldconfig
 
 # Symlink OpenCV packages
 cd ~/.virtualenvs/cv/lib/python2.7/site-packages/
-ln -s /usr/local/lib/python2.7/dist-packages/cv2.so cv2.so
+ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so
