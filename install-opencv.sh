@@ -15,7 +15,7 @@ sudo apt-get install -y libgtk2.0-dev
 sudo apt-get install -y libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
 
 # Video I/O:
-sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-de
+sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev
 
 # Parallelism and linear algebra libraries:
 sudo apt-get install -y libatlas-base-dev gfortran
@@ -43,17 +43,17 @@ sudo apt-get remove libavcodec-extra-56 libavformat56 libavresample2 libavutil54
 sudo wget https://github.com/ccrisan/motioneye/wiki/precompiled/ffmpeg_3.1.1-1_armhf.deb
 sudo dpkg -i ffmpeg_3.1.1-1_armhf.deb
 
-# INSTALL THE LIBRARY (YOU CAN CHANGE '3.2.0' FOR THE LAST STABLE VERSION)
+# INSTALL THE LIBRARY (YOU CAN CHANGE '3.1.0' FOR THE LAST STABLE VERSION)
 sudo apt-get install -y unzip wget
-wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.2.0.zip
-rm -rf opencv-3.2.0
+wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.1.0.zip
+rm -rf opencv-3.1.0
 unzip opencv.zip
 rm opencv.zip
-wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.2.0.zip
-rm -rf opencv_contrib-3.2.0
+wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.1.0.zip
+rm -rf opencv_contrib-3.1.0
 unzip opencv_contrib.zip
 rm opencv_contrib.zip
-cd opencv-3.2.0/modules/python/
+cd opencv-3.1.0/modules/python/
 echo -e "\n# virtualenv and virtualenvwrapper" >> common.cmake
 echo "find_package(HDF5)" >> common.cmake
 echo "include_directories(${HDF5_INCLUDE_DIRS})" >> common.cmake
@@ -63,7 +63,7 @@ cd build
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
     -D INSTALL_PYTHON_EXAMPLES=ON \
-    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.2.0/modules \
+    -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.1.0/modules \
     -D BUILD_EXAMPLES=ON ..
 make -j4
 sudo make install
