@@ -98,10 +98,10 @@ def main():
 	hog = cv2.HOGDescriptor()
 	hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 	global faceCascade
-	faceCascPath = "opencv-3.1.0/data/haarcascades/haarcascade_frontalface_default.xml"
+	faceCascPath = "opencv-3.2.0/data/haarcascades/haarcascade_frontalface_default.xml"
 	faceCascade = cv2.CascadeClassifier(faceCascPath)
 	global eyeCascade
-	eyeCascPath = "opencv-3.1.0/data/haarcascades/haarcascade_eye.xml"
+	eyeCascPath = "opencv-3.2.0/data/haarcascades/haarcascade_eye.xml"
 	eyeCascade = cv2.CascadeClassifier(eyeCascPath)
 	global capture
 	capture = cv2.VideoCapture(0)
