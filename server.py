@@ -66,7 +66,7 @@ class CamHandler(BaseHTTPRequestHandler):
 					rc,img = capture.read()
 					if not rc:
 						continue
-					img = detectFaces(img)
+					img = detectPedestrians(img)
 					imgRGB=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 					jpg = Image.fromarray(imgRGB)
 					tmpFile = StringIO.StringIO()

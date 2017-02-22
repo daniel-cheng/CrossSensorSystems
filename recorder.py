@@ -5,6 +5,7 @@ import threading
 import time
 import subprocess
 import os
+import Video_Client
 
 ########################
 ## JRF
@@ -269,6 +270,8 @@ def record(seconds):
 	time.sleep(seconds)
 	
 	stop_AVrecording(filename)
+
+	Video_Client.File_Send()
 	
 	
 if __name__== "__main__":

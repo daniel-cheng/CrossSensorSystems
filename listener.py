@@ -109,7 +109,7 @@ def listen_for_speech(threshold=THRESHOLD, num_phrases=-1):
             #audio2send.append(cur_data)
 	    stream.close()
 	    p.terminate()
-	    recorder.record(30)
+	    recorder.record(15)
             print "Finished"
             # The limit was reached, finish capture and deliver.
             #filename = save_speech(list(prev_audio) + audio2send, p)
