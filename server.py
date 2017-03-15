@@ -14,28 +14,30 @@ from imutils.object_detection import non_max_suppression
 from imutils import paths
 import numpy as np
 import imutils
+import recorder
 capture=None
 hog=None
 faceCascade=None
 eyeCascade=None
 
 def detectPedestrians(image):
-	image = imutils.resize(image, width=min(320, image.shape[1]))
+	image = cv2.imread("pedestrians.jpg")
+	image = imutils.resize(image, width=min(640, image.shape[1]))
  
 	# detect people in the image
 	(rects, weights) = hog.detectMultiScale(image, winStride=(4, 4),
-		padding=(8, 8), scale=1.5)
+		padding=(4, 4), scale=1.025)
  
 	# apply non-maxima suppression to the bounding boxes using a
 	# fairly large overlap threshold to try to maintain overlapping
 	# boxes that are still people
 	rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in rects])
-	pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
+	pick = non_max_suppression(rects, probs=None, overlapThresh=0.9)
  
 	# draw the final bounding boxes
 	for (xA, yA, xB, yB) in pick:
 		cv2.rectangle(image, (xA, yA), (xB, yB), (0, 255, 0), 2)	
-		print xA
+		#print xA
 
 	return image
 
@@ -87,6 +89,15 @@ class CamHandler(BaseHTTPRequestHandler):
 			self.wfile.write('<html><head></head><body>')
 			self.wfile.write('<img src="http://172.113.170.244:8080/cam.mjpg"/>')
 			self.wfile.write('</body></html>')
+			return
+		if self.path.endswith('?genvideo=1'):
+			self.send_response(200)
+			self.send_header('Content-type','text/html')
+			self.end_headers()
+			self.wfile.write('<html><head></head><body>')
+			self.wfile.write('Generating video...')
+			self.wfile.write('</body></html>')
+			recorder.record(15);	
 			return
 
 

@@ -24,15 +24,11 @@ def File_Send():
         #filesize = bytes(bin(filesize)[2:].zfill(32),'utf-8') # encode filesize as 32 bit binary
         #s.send(filesize)
         response1 = s.recv(1024)
-        print(response1)
-        print(response1.decode())
         if(response1.decode() == "Name_recv"):
-            print("Here")
             size = os.stat(filename).st_size
-            print(size)
             s.send(bytes(str(size)))
             response2 = s.recv(1024)
-            print(response2.decode())
+            #print(response2.decode())
             if(response2.decode() == "Size_recv"):
                 file_to_send = open(filename,'rb')
     

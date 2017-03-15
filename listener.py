@@ -8,7 +8,7 @@ import urllib
 import time
 import math
 
-import recorder #CSS python script
+import video_recorder #CSS python script
 
 LANG_CODE = 'en-US'  # Language to use
 
@@ -21,7 +21,7 @@ FLAC_CONV = 'flac -f'  # We need a WAV to FLAC converter. flac is available
 CHUNK = 1024  # CHUNKS of bytes to read each time from mic
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-RATE = 16000
+RATE = 44000
 THRESHOLD = 6000  # The threshold intensity that defines silence
                   # and noise signal (an int. lower than THRESHOLD is silence).
 
@@ -109,7 +109,7 @@ def listen_for_speech(threshold=THRESHOLD, num_phrases=-1):
             #audio2send.append(cur_data)
 	    stream.close()
 	    p.terminate()
-	    recorder.record(15)
+	    recorder.record(30)
             print "Finished"
             # The limit was reached, finish capture and deliver.
             #filename = save_speech(list(prev_audio) + audio2send, p)
