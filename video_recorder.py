@@ -16,7 +16,7 @@ def record(seconds):
 	
 if __name__== "__main__":
 	while (True):
-		record(3)
+		record(30)
 		path = "/var/www/html/videos"
 		now = time.time()
 		for f in os.listdir(path):
