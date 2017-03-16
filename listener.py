@@ -21,7 +21,7 @@ FLAC_CONV = 'flac -f'  # We need a WAV to FLAC converter. flac is available
 CHUNK = 1024  # CHUNKS of bytes to read each time from mic
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-RATE = 44000
+RATE = 32000
 THRESHOLD = 6000  # The threshold intensity that defines silence
                   # and noise signal (an int. lower than THRESHOLD is silence).
 
@@ -99,17 +99,17 @@ def listen_for_speech(threshold=THRESHOLD, num_phrases=-1):
     while (num_phrases == -1 or n > 0):
         cur_data = stream.read(CHUNK)
         slid_win.append(math.sqrt(abs(audioop.avg(cur_data, 4))))
-    	print(slid_win[-1])
+    	#print(slid_win[-1])
         if(sum([x > THRESHOLD for x in slid_win]) > 0):
             print(slid_win[-1])
-	    print sum([x > THRESHOLD for x in slid_win])
+	    #print sum([x > THRESHOLD for x in slid_win])
             if(not started):
                 print "Starting record of phrase"
                 started = True
             #audio2send.append(cur_data)
 	    stream.close()
 	    p.terminate()
-	    recorder.record(30)
+	    video_recorder.record(30)
             print "Finished"
             # The limit was reached, finish capture and deliver.
             #filename = save_speech(list(prev_audio) + audio2send, p)
